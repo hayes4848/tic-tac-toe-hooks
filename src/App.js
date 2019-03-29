@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Row from './row'
 import './App.css';
 
-class App extends Component {
-  render() {
+const App = () => {
+    const [game, updateGame] = useState([["","",""],["","",""],["","",""]]);
+    const [startingChar, updateStartingChar] = useState("X");
+
+    const resetGame = () => {
+      updateGame([["","",""],["","",""],["","",""]])
+    }
+
+    const handleGameUpdate = (rowIndex, cellIndex) => {
+      let updatedGame = [...game]
+      updatedGame[rowIndex][cellIndex] = startingChar
+      updateGame(updatedGame)
+      updateStartingChar(startingChar === "X" ? "O" : "X")
+    }
+
+    const rows = game.map( (row, index) => {
+      return <Row key={index} rowIndex={index} row={row} updateGame={handleGameUpdate} />
+    })
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="starting-text">it is {startingChar}'s turn to play! </div>
+        {rows}
+        <button className="reset-button" onClick={() => { resetGame() }}>Reset Board</button>
       </div>
     );
-  }
+
 }
 
 export default App;

@@ -1,0 +1,28 @@
+.row-container {
+	width: 50%;
+	margin-left: 25%;
+	display: grid;
+	/*grid-template-rows: 30%;*/
+	grid-template-columns: 33% 33% 33%;
+}
+.cell-container {
+	background-color: rgba(205, 208, 214, 0.5);
+	grid-column-start: auto;
+	justify-self: center;
+	align-self: center;
+	width: 92%;
+	cursor: pointer;
+	border: 1px solid black;
+	font-size: 25px;
+	height: 6em;
+	box-sizing: border-box;
+	margin:5px;
+	position: relative;
+}
+.cell-value{
+	width: 100%;
+	text-align: center;
+	font-size: 5em;
+	vertical-align: middle;
+	display: inline-block;
+}
